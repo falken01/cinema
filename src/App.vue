@@ -1,12 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+ <div id="app">
+    <v-app id="inspire">
+      <v-app-bar class="d-block" color="deep-purple"  fixed >
+        <v-app-bar-title class="text-left">Kino</v-app-bar-title>
+        <template v-slot:append>
+          <v-btn >Zaloguj</v-btn>
+          <v-btn >Zarejestru</v-btn>
+        </template>
+      </v-app-bar >
+      <v-container class="mt-8">
+        <router-view />
+      </v-container>
+    </v-app>
+</div>
 </template>
 
 <style lang="scss">
+#inspire {
+  background-color: rgb(194, 75, 119);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
