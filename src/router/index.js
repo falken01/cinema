@@ -25,6 +25,42 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "seats" */ "../views/CinemaView.vue"),
   },
+  {
+    path: "/summary",
+    name: "summary",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "seats" */ "../views/OrederSummary.vue"),
+  },
+  {
+    path: "/tickets",
+    name: "tickets",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "seats" */ "../views/TicketsView.vue"),
+  },
+  {
+    path: "/employee/halls",
+    name: "halls",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "seats" */ "../views/CinemaHallView.vue"),
+  },
+  {
+    path: "/employee/movie",
+    name: "movie",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "seats" */ "../views/MovieEditorView.vue"),
+  },
 ];
 
 const router = createRouter({

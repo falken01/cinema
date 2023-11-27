@@ -12,19 +12,18 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient";
-import {CreateAccountDto} from '../model/CreateAccountDto';
-import {LoginDto} from '../model/LoginDto';
-import {ProblemDetails} from '../model/ProblemDetails';
+import { ApiClient } from "../ApiClient";
+import { CreateAccountDto } from "../model/CreateAccountDto";
+import { LoginDto } from "../model/LoginDto";
+import { ProblemDetails } from "../model/ProblemDetails";
 
 /**
-* Account service.
-* @module api/AccountApi
-* @version 1.0
-*/
+ * Account service.
+ * @module api/AccountApi
+ * @version 1.0
+ */
 export class AccountApi {
-
-    /**
+  /**
     * Constructs a new AccountApi. 
     * @alias module:api/AccountApi
     * @class
@@ -32,210 +31,212 @@ export class AccountApi {
     * default to {@link module:ApiClient#instanc
     e} if unspecified.
     */
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
-    }
+  constructor(apiClient) {
+    this.apiClient = apiClient || ApiClient.instance;
+  }
 
-    /**
-     * Callback function to receive the result of the accountLoginPost operation.
-     * @callback moduleapi/AccountApi~accountLoginPostCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
+  /**
+   * Callback function to receive the result of the accountLoginPost operation.
+   * @callback moduleapi/AccountApi~accountLoginPostCallback
+   * @param {String} error Error message, if any.
+   * @param data This operation does not return a value.
+   * @param {String} response The complete HTTP response.
+   */
 
-    /**
-     * @param {Object} opts Optional parameters
-     * @param {module:model/LoginDto} opts.body 
-     * @param {module:api/AccountApi~accountLoginPostCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    accountLoginPost(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
+  /**
+   * @param {Object} opts Optional parameters
+   * @param {module:model/LoginDto} opts.body
+   * @param {module:api/AccountApi~accountLoginPostCallback} callback The callback function, accepting three arguments: error, data, response
+   */
+  accountLoginPost(opts, callback) {
+    opts = opts || {};
+    let postBody = opts["body"];
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+    let pathParams = {};
+    let queryParams = {};
+    let headerParams = {};
+    let formParams = {};
 
-      let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
-      let accepts = ['text/plain', 'application/json', 'text/json'];
-      let returnType = null;
+    let authNames = [];
+    let contentTypes = ["application/json", "text/json", "application/_*+json"];
+    let accepts = ["text/plain", "application/json", "text/json"];
+    let returnType = null;
 
-      return this.apiClient.callApi(
-        '/Account/login', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the accountLogoutGet operation.
-     * @callback moduleapi/AccountApi~accountLogoutGetCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
+    return this.apiClient.callApi(
+      "/Account/login",
+      "POST",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    );
+  }
+  /**
+   * Callback function to receive the result of the accountLogoutGet operation.
+   * @callback moduleapi/AccountApi~accountLogoutGetCallback
+   * @param {String} error Error message, if any.
+   * @param data This operation does not return a value.
+   * @param {String} response The complete HTTP response.
+   */
 
-    /**
-     * @param {module:api/AccountApi~accountLogoutGetCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    accountLogoutGet(callback) {
-      
-      let postBody = null;
+  /**
+   * @param {module:api/AccountApi~accountLogoutGetCallback} callback The callback function, accepting three arguments: error, data, response
+   */
+  accountLogoutGet(callback) {
+    let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+    let pathParams = {};
+    let queryParams = {};
+    let headerParams = {};
+    let formParams = {};
 
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['text/plain', 'application/json', 'text/json'];
-      let returnType = null;
+    let authNames = [];
+    let contentTypes = [];
+    let accepts = ["text/plain", "application/json", "text/json"];
+    let returnType = null;
 
-      return this.apiClient.callApi(
-        '/Account/logout', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the accountRegisterPost operation.
-     * @callback moduleapi/AccountApi~accountRegisterPostCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
+    return this.apiClient.callApi(
+      "/Account/logout",
+      "GET",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    );
+  }
+  /**
+   * Callback function to receive the result of the accountRegisterPost operation.
+   * @callback moduleapi/AccountApi~accountRegisterPostCallback
+   * @param {String} error Error message, if any.
+   * @param data This operation does not return a value.
+   * @param {String} response The complete HTTP response.
+   */
 
-    /**
-     * @param {Object} opts Optional parameters
-     * @param {module:model/CreateAccountDto} opts.body 
-     * @param {module:api/AccountApi~accountRegisterPostCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    accountRegisterPost(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
+  /**
+   * @param {Object} opts Optional parameters
+   * @param {module:model/CreateAccountDto} opts.body
+   * @param {module:api/AccountApi~accountRegisterPostCallback} callback The callback function, accepting three arguments: error, data, response
+   */
+  accountRegisterPost(opts, callback) {
+    opts = opts || {};
+    let postBody = opts["body"];
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+    let pathParams = {};
+    let queryParams = {};
+    let headerParams = {};
+    let formParams = {};
 
-      let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
-      let accepts = ['text/plain', 'application/json', 'text/json'];
-      let returnType = null;
+    let authNames = [];
+    let contentTypes = ["application/json", "text/json", "application/_*+json"];
+    let accepts = ["text/plain", "application/json", "text/json"];
+    let returnType = null;
 
-      return this.apiClient.callApi(
-        '/Account/register', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the accountRolesGet operation.
-     * @callback moduleapi/AccountApi~accountRolesGetCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
+    return this.apiClient.callApi(
+      "/Account/register",
+      "POST",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    );
+  }
+  /**
+   * Callback function to receive the result of the accountRolesGet operation.
+   * @callback moduleapi/AccountApi~accountRolesGetCallback
+   * @param {String} error Error message, if any.
+   * @param data This operation does not return a value.
+   * @param {String} response The complete HTTP response.
+   */
 
-    /**
-     * @param {module:api/AccountApi~accountRolesGetCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    accountRolesGet(callback) {
-      
-      let postBody = null;
+  /**
+   * @param {module:api/AccountApi~accountRolesGetCallback} callback The callback function, accepting three arguments: error, data, response
+   */
+  accountRolesGet(callback) {
+    let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+    let pathParams = {};
+    let queryParams = {};
+    let headerParams = {};
+    let formParams = {};
 
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['text/plain', 'application/json', 'text/json'];
-      let returnType = null;
+    let authNames = [];
+    let contentTypes = [];
+    let accepts = ["text/plain", "application/json", "text/json"];
+    let returnType = null;
 
-      return this.apiClient.callApi(
-        '/Account/roles', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the accountRolesPost operation.
-     * @callback moduleapi/AccountApi~accountRolesPostCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
+    return this.apiClient.callApi(
+      "/Account/roles",
+      "GET",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    );
+  }
+  /**
+   * Callback function to receive the result of the accountRolesPost operation.
+   * @callback moduleapi/AccountApi~accountRolesPostCallback
+   * @param {String} error Error message, if any.
+   * @param data This operation does not return a value.
+   * @param {String} response The complete HTTP response.
+   */
 
-    /**
-     * @param {Object} opts Optional parameters
-     * @param {Array.<String>} opts.body 
-     * @param {module:api/AccountApi~accountRolesPostCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    accountRolesPost(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
+  /**
+   * @param {Object} opts Optional parameters
+   * @param {Array.<String>} opts.body
+   * @param {module:api/AccountApi~accountRolesPostCallback} callback The callback function, accepting three arguments: error, data, response
+   */
+  accountRolesPost(opts, callback) {
+    opts = opts || {};
+    let postBody = opts["body"];
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+    let pathParams = {};
+    let queryParams = {};
+    let headerParams = {};
+    let formParams = {};
 
-      let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
-      let accepts = ['text/plain', 'application/json', 'text/json'];
-      let returnType = null;
+    let authNames = [];
+    let contentTypes = ["application/json", "text/json", "application/_*+json"];
+    let accepts = ["text/plain", "application/json", "text/json"];
+    let returnType = null;
 
-      return this.apiClient.callApi(
-        '/Account/roles', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
+    return this.apiClient.callApi(
+      "/Account/roles",
+      "POST",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    );
+  }
 }

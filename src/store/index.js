@@ -1,9 +1,13 @@
-import { createStore } from "vuex";
+import Vuex from "vuex";
+import * as user from "@/store/modules/user.js";
+import * as movie from "@/store/modules/movie.js";
 
-export default createStore({
+export default new Vuex.Store({
   state: {},
-  getters: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: {
+    user,
+    movie,
+  },
 });
