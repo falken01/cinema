@@ -1,21 +1,27 @@
 <template>
- <div id="app">
+  <div id="app">
     <v-app id="inspire">
-      <v-app-bar class="d-block" color="deep-purple"  fixed >
-        <v-app-bar-title class="text-left">Kino</v-app-bar-title>
+      <v-app-bar class="d-block" color="deep-purple" fixed>
+        <v-app-bar-title class="text-left"
+          ><router-link to="/">Kino</router-link></v-app-bar-title
+        >
         <template v-slot:append>
-          <v-btn >Zaloguj</v-btn>
-          <v-btn >Zarejestru</v-btn>
+          <v-btn>Zaloguj</v-btn>
+          <v-btn>Zarejestruj</v-btn>
         </template>
-      </v-app-bar >
+      </v-app-bar>
       <v-container class="mt-8">
         <router-view />
       </v-container>
     </v-app>
-</div>
+  </div>
 </template>
 
 <style lang="scss">
+a {
+  text-decoration: none;
+  color: white;
+}
 #inspire {
   background-color: rgb(194, 75, 119);
 }
