@@ -2,12 +2,10 @@
   <div id="app">
     <v-app id="inspire">
       <v-app-bar class="d-block" color="deep-purple" fixed>
-        <v-app-bar-title class="text-left"
-          ><router-link to="/">Kino</router-link></v-app-bar-title
-        >
+        <v-app-bar-title class="text-left">Kino</v-app-bar-title>
         <template v-slot:append>
-          <v-btn>Zaloguj</v-btn>
-          <v-btn>Zarejestruj</v-btn>
+          <v-btn @click="goToLogin">Zaloguj</v-btn>
+          <v-btn @click="goToRegister">Zarejestruj</v-btn>
         </template>
       </v-app-bar>
       <v-container class="mt-8">
@@ -16,6 +14,19 @@
     </v-app>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    goToLogin() {
+      this.$router.push({ name: "login" });
+    },
+    goToRegister() {
+      this.$router.push({ name: "register" });
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 a {
