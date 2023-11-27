@@ -1,46 +1,54 @@
 <template>
-    <div class="seat mt-4 mr-2" :class="{reserved : isReserved, free: isFree}" @click="take">
-      {{ num }}
-    </div>
-  </template>
-  
-  <script>
+  <div
+    class="seat mt-4 mr-2"
+    :class="{ reserved: isReserved, free: isFree, taken: isTaken }"
+    @click="take"
+  >
+    {{ num }}
+  </div>
+</template>
 
-  export default {
-    name: "cinemaSeat",
-    props: {
-      num: Number,
-    },
-    data () {
-      return {
-        isReserved:false,
-        isFree : true
-      }
-    },
-    methods:{
-      take(){
-        this.isFree = !this.isFree
+<script>
+export default {
+  name: "cinemaSeat",
+  props: {
+    num: Number,
+    isTaken: Boolean,
+  },
+  data() {
+    return {
+      isReserved: false,
+      isFree: true,
+    };
+  },
+  methods: {
+    take() {
+      if (this.taken === true) {
+        return this.isTaken;
+      } else {
+        this.isFree = !this.isFree;
         this.isReserved = !this.isReserved;
       }
-    }
-  };
-  </script>
-  
-  <style scoped lang="scss">
-  .seat {
-    width: 25px;
-    height: 25px;
-    color: white
-  }
-  .free {
-    background-color: green;
-  }
+    },
+  },
+};
+</script>
 
-  .taken {
-    background-color: rgb(255, 0, 0) !important;
-  }
-  .reserved {
-    background-color: black;
-  }
-  </style>
-  
+<style scoped lang="scss">
+.seat {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+}
+.free {
+  background-color: green;
+}
+
+.taken {
+  background-color: rgb(255, 0, 0) !important;
+}
+.reserved {
+  background-color: black;
+}
+</style>

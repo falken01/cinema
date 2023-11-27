@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style lang="scss">
+a {
+  text-decoration: none;
+  color: white;
+}
 #inspire {
   background-color: rgb(194, 75, 119);
 }
