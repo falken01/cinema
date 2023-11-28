@@ -13,7 +13,6 @@
  *
  */
 import {ApiClient} from '../ApiClient';
-import {TimeSpan} from './TimeSpan';
 
 /**
  * The CreateMovieDto model module.
@@ -44,7 +43,7 @@ export class CreateMovieDto {
       if (data.hasOwnProperty('description'))
         obj.description = ApiClient.convertToType(data['description'], 'String');
       if (data.hasOwnProperty('duration'))
-        obj.duration = TimeSpan.constructFromObject(data['duration']);
+        obj.duration = ApiClient.convertToType(data['duration'], 'String');
       if (data.hasOwnProperty('yearOfRelease'))
         obj.yearOfRelease = ApiClient.convertToType(data['yearOfRelease'], 'Number');
       if (data.hasOwnProperty('genre'))
@@ -69,7 +68,7 @@ CreateMovieDto.prototype.title = undefined;
 CreateMovieDto.prototype.description = undefined;
 
 /**
- * @member {module:model/TimeSpan} duration
+ * @member {String} duration
  */
 CreateMovieDto.prototype.duration = undefined;
 

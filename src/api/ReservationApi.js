@@ -38,8 +38,8 @@ export class ReservationApi {
     }
 
     /**
-     * Callback function to receive the result of the createReservation operation.
-     * @callback moduleapi/ReservationApi~createReservationCallback
+     * Callback function to receive the result of the confirmPost operation.
+     * @callback moduleapi/ReservationApi~confirmPostCallback
      * @param {String} error Error message, if any.
      * @param {module:model/ReservationDto{ data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -47,11 +47,11 @@ export class ReservationApi {
 
     /**
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateReservationDto} opts.body 
-     * @param {module:api/ReservationApi~createReservationCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:model/ReservationDto} opts.body 
+     * @param {module:api/ReservationApi~confirmPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    createReservation(opts, callback) {
+    confirmPost(opts, callback) {
       opts = opts || {};
       let postBody = opts['body'];
 
@@ -69,12 +69,54 @@ export class ReservationApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = ReservationDto;
 
       return this.apiClient.callApi(
-        '/Reservation', 'POST',
+        '/confirm', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the createPost operation.
+     * @callback moduleapi/ReservationApi~createPostCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ReservationDto{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateReservationDto} opts.body 
+     * @param {module:api/ReservationApi~createPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    createPost(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+      let accepts = ['text/plain', 'application/json', 'text/json'];
+      let returnType = ReservationDto;
+
+      return this.apiClient.callApi(
+        '/create', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -165,29 +207,24 @@ export class ReservationApi {
       );
     }
     /**
-     * Callback function to receive the result of the updateReservation operation.
-     * @callback moduleapi/ReservationApi~updateReservationCallback
+     * Callback function to receive the result of the removePendingDelete operation.
+     * @callback moduleapi/ReservationApi~removePendingDeleteCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * @param {Number} id 
      * @param {Object} opts Optional parameters
-     * @param {module:model/UpdateReservationStatusDto} opts.body 
-     * @param {module:api/ReservationApi~updateReservationCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:model/ReservationDto} opts.body 
+     * @param {module:api/ReservationApi~removePendingDeleteCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    updateReservation(id, opts, callback) {
+    removePendingDelete(opts, callback) {
       opts = opts || {};
       let postBody = opts['body'];
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateReservation");
-      }
 
       let pathParams = {
-        'id': id
+        
       };
       let queryParams = {
         
@@ -200,12 +237,53 @@ export class ReservationApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = null;
 
       return this.apiClient.callApi(
-        '/Reservation/{id}', 'PUT',
+        '/remove-pending', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the updateReservation operation.
+     * @callback moduleapi/ReservationApi~updateReservationCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateReservationStatusDto} opts.body 
+     * @param {module:api/ReservationApi~updateReservationCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    updateReservation(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+      let accepts = ['text/plain', 'application/json', 'text/json'];
+      let returnType = null;
+
+      return this.apiClient.callApi(
+        '/Reservation', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

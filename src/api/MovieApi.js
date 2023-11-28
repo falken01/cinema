@@ -15,6 +15,7 @@
 import {ApiClient} from "../ApiClient";
 import {CreateMovieDto} from '../model/CreateMovieDto';
 import {MovieDto} from '../model/MovieDto';
+import {MovieWithShowingHoursDto} from '../model/MovieWithShowingHoursDto';
 import {ProblemDetails} from '../model/ProblemDetails';
 import {UpdateMovieDto} from '../model/UpdateMovieDto';
 
@@ -69,7 +70,7 @@ export class MovieApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = MovieDto;
 
@@ -209,6 +210,51 @@ export class MovieApi {
       );
     }
     /**
+     * Callback function to receive the result of the getMoviesByDate operation.
+     * @callback moduleapi/MovieApi~getMoviesByDateCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/MovieWithShowingHoursDto>{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Date} _date 
+     * @param {module:api/MovieApi~getMoviesByDateCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getMoviesByDate(_date, callback) {
+      
+      let postBody = null;
+      // verify the required parameter '_date' is set
+      if (_date === undefined || _date === null) {
+        throw new Error("Missing the required parameter '_date' when calling getMoviesByDate");
+      }
+
+      let pathParams = {
+        'date': _date
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['text/plain', 'application/json', 'text/json'];
+      let returnType = [MovieWithShowingHoursDto];
+
+      return this.apiClient.callApi(
+        '/Movie/date/{date}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
      * Callback function to receive the result of the updateMovie operation.
      * @callback moduleapi/MovieApi~updateMovieCallback
      * @param {String} error Error message, if any.
@@ -245,7 +291,7 @@ export class MovieApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = MovieDto;
 

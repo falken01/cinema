@@ -13,7 +13,6 @@
  *
  */
 import {ApiClient} from '../ApiClient';
-import {TimeSpan} from './TimeSpan';
 
 /**
  * The UpdateMovieDto model module.
@@ -54,7 +53,7 @@ export class UpdateMovieDto {
       if (data.hasOwnProperty('actors'))
         obj.actors = ApiClient.convertToType(data['actors'], 'String');
       if (data.hasOwnProperty('duration'))
-        obj.duration = TimeSpan.constructFromObject(data['duration']);
+        obj.duration = ApiClient.convertToType(data['duration'], 'String');
     }
     return obj;
   }
@@ -96,7 +95,7 @@ UpdateMovieDto.prototype.director = undefined;
 UpdateMovieDto.prototype.actors = undefined;
 
 /**
- * @member {module:model/TimeSpan} duration
+ * @member {String} duration
  */
 UpdateMovieDto.prototype.duration = undefined;
 

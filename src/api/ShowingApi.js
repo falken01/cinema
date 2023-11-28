@@ -68,7 +68,7 @@ export class ShowingApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = ShowingDto;
 
@@ -285,7 +285,7 @@ export class ShowingApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/json', 'text/json', 'application/_*+json'];
+      let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
       let accepts = ['text/plain', 'application/json', 'text/json'];
       let returnType = ShowingDto;
 

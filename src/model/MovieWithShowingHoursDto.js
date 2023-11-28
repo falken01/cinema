@@ -13,31 +13,32 @@
  *
  */
 import {ApiClient} from '../ApiClient';
+import {DateTimeInt32ValueTuple} from './DateTimeInt32ValueTuple';
 
 /**
- * The MovieDto model module.
- * @module model/MovieDto
+ * The MovieWithShowingHoursDto model module.
+ * @module model/MovieWithShowingHoursDto
  * @version 1.0
  */
-export class MovieDto {
+export class MovieWithShowingHoursDto {
   /**
-   * Constructs a new <code>MovieDto</code>.
-   * @alias module:model/MovieDto
+   * Constructs a new <code>MovieWithShowingHoursDto</code>.
+   * @alias module:model/MovieWithShowingHoursDto
    * @class
    */
   constructor() {
   }
 
   /**
-   * Constructs a <code>MovieDto</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>MovieWithShowingHoursDto</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/MovieDto} obj Optional instance to populate.
-   * @return {module:model/MovieDto} The populated <code>MovieDto</code> instance.
+   * @param {module:model/MovieWithShowingHoursDto} obj Optional instance to populate.
+   * @return {module:model/MovieWithShowingHoursDto} The populated <code>MovieWithShowingHoursDto</code> instance.
    */
   static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new MovieDto();
+      obj = obj || new MovieWithShowingHoursDto();
       if (data.hasOwnProperty('movieId'))
         obj.movieId = ApiClient.convertToType(data['movieId'], 'Number');
       if (data.hasOwnProperty('title'))
@@ -54,6 +55,8 @@ export class MovieDto {
         obj.actors = ApiClient.convertToType(data['actors'], 'String');
       if (data.hasOwnProperty('duration'))
         obj.duration = ApiClient.convertToType(data['duration'], 'String');
+      if (data.hasOwnProperty('showings'))
+        obj.showings = ApiClient.convertToType(data['showings'], [DateTimeInt32ValueTuple]);
     }
     return obj;
   }
@@ -62,40 +65,45 @@ export class MovieDto {
 /**
  * @member {Number} movieId
  */
-MovieDto.prototype.movieId = undefined;
+MovieWithShowingHoursDto.prototype.movieId = undefined;
 
 /**
  * @member {String} title
  */
-MovieDto.prototype.title = undefined;
+MovieWithShowingHoursDto.prototype.title = undefined;
 
 /**
  * @member {String} description
  */
-MovieDto.prototype.description = undefined;
+MovieWithShowingHoursDto.prototype.description = undefined;
 
 /**
  * @member {Number} yearOfRelease
  */
-MovieDto.prototype.yearOfRelease = undefined;
+MovieWithShowingHoursDto.prototype.yearOfRelease = undefined;
 
 /**
  * @member {String} genre
  */
-MovieDto.prototype.genre = undefined;
+MovieWithShowingHoursDto.prototype.genre = undefined;
 
 /**
  * @member {String} director
  */
-MovieDto.prototype.director = undefined;
+MovieWithShowingHoursDto.prototype.director = undefined;
 
 /**
  * @member {String} actors
  */
-MovieDto.prototype.actors = undefined;
+MovieWithShowingHoursDto.prototype.actors = undefined;
 
 /**
  * @member {String} duration
  */
-MovieDto.prototype.duration = undefined;
+MovieWithShowingHoursDto.prototype.duration = undefined;
+
+/**
+ * @member {Array.<module:model/DateTimeInt32ValueTuple>} showings
+ */
+MovieWithShowingHoursDto.prototype.showings = undefined;
 
