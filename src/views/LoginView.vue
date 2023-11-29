@@ -17,7 +17,7 @@
       />
       <button
         style="background-color: #deb887; padding: 5px 5px"
-        @click="login"
+        @click="loginMethod"
       >
         Zaloguj
       </button>
@@ -55,9 +55,18 @@ export default {
       password: "",
     };
   },
+  computed: {
+    collectData() {
+      return {
+        email: this.username,
+        password: this.password
+      };
+    },
+  },
   methods: {
-    login() {
-      console.log("Login: ", this.username, "Hasło: ", this.password);
+    loginMethod() {
+      this.$store
+        .dispatch("user/signIn", this.collectData)
     },
   },
 };

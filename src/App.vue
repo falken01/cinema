@@ -2,7 +2,7 @@
   <div id="app">
     <v-app id="inspire">
       <v-app-bar class="d-block" color="deep-purple" fixed>
-        <v-app-bar-title class="text-left">Kino</v-app-bar-title>
+        <v-app-bar-title @click="$router.push({ path: '/' })" class="text-left"><v-btn class="text-md-left">Kino</v-btn></v-app-bar-title>
         <template v-slot:append>
           <v-btn @click="goToLogin">Zaloguj</v-btn>
           <v-btn @click="goToRegister">Zarejestruj</v-btn>
