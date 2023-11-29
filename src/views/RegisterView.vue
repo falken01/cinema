@@ -6,7 +6,14 @@
         class="input_area"
         type="text"
         placeholder="Login"
-        v-model="username"
+        v-model="login"
+      />
+      Nazwa:
+      <input
+        class="input_area"
+        type="text"
+        placeholder="Nazwa"
+        v-model="name"
       />
       Hasło
       <input
@@ -26,7 +33,7 @@
 
       <button
         style="background-color: #deb887; padding: 5px 5px"
-        @click="register"
+        @click="applyRegistration"
       >
         Zarejestruj się
       </button>
@@ -55,27 +62,31 @@
 </style>
 
 <script>
-// @ is an alias to /src
+  // @ is an alias to /src
 export default {
   name: "RegisterView",
   data() {
     return {
-      username: "",
+      login: "",
+      name: "",
       password: "",
       password2: "",
     };
   },
   methods: {
-    register() {
-      console.log(
-        "Login: ",
-        this.username,
-        "Hasło: ",
-        this.password,
-        "Powtórzone hasło: ",
-        this.password2
-      );
+    collectData() {
+      if (this.password === this.password2) {
+        return {
+          email: this.login,
+          password: this.password,
+          name: this.name
+        };
+      }
     },
+    applyRegistration() {
+      console.log(this.collectData())
+      this.$store.dispatch("user/register",this.collectData())
+    }
   },
 };
 </script>

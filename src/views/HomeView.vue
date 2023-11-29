@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <v-text-field class="mt-8" type="date"></v-text-field>
+    <v-text-field class="mt-8" type="date" v-model="dateInput"></v-text-field>
     <v-card
       class="mt-8"
       color="indigo"
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       isLoggedin: false,
+      dateInput : "2023-11-29",
       films: [
         {
           id: 1,
@@ -65,5 +66,8 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.$store.dispatch("movie/getTable", this.dateInput)
+  }
 };
 </script>
