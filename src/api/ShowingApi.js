@@ -16,6 +16,7 @@ import {ApiClient} from "../ApiClient";
 import {CreateShowingDto} from '../model/CreateShowingDto';
 import {ProblemDetails} from '../model/ProblemDetails';
 import {ShowingDto} from '../model/ShowingDto';
+import {ShowingWithTakenSeatsDto} from '../model/ShowingWithTakenSeatsDto';
 
 /**
 * Showing service.
@@ -249,6 +250,51 @@ export class ShowingApi {
 
       return this.apiClient.callApi(
         '/Showing/movie/{id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the showingIdTakenSeatsGet operation.
+     * @callback moduleapi/ShowingApi~showingIdTakenSeatsGetCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ShowingWithTakenSeatsDto{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Number} id 
+     * @param {module:api/ShowingApi~showingIdTakenSeatsGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    showingIdTakenSeatsGet(id, callback) {
+      
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling showingIdTakenSeatsGet");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['text/plain', 'application/json', 'text/json'];
+      let returnType = ShowingWithTakenSeatsDto;
+
+      return this.apiClient.callApi(
+        '/Showing/{id}/taken-seats', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
