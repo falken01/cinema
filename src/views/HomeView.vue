@@ -43,31 +43,51 @@ export default {
   data() {
     return {
       isLoggedin: false,
-      dateInput : "2023-11-29",
-      films: [
-        {
-          id: 1,
-          title: "test1",
-          desc: "zzzz",
-          hours: ["8:00", "9:00", "10:00"],
-        },
-        {
-          id: 2,
-          title: "test2",
-          desc: "xxxx",
-          hours: ["8:00", "9:00", "10:00"],
-        },
-        {
-          id: 3,
-          title: "test3",
-          desc: "yyyy",
-          hours: ["8:00", "9:00", "10:00"],
-        },
-      ],
+      dateInput: new Date().toISOString().substr(0, 10),
+      films: [],
     };
   },
-  mounted() {
-    this.$store.dispatch("movie/getTable", this.dateInput)
-  }
+
+  watch: {
+    async dateInput(newDate) {
+      let x = await this.$store.dispatch("movie/getTable", newDate);
+      let new_films = [];
+      for (let i of x.data) {
+        let new_film = {
+          id: i.movieId,
+          title: i.title,
+          desc: i.description,
+          hours: [],
+        };
+
+        for (let show of i.showings) {
+          let termin = new Date(show.item1);
+          new_film.hours.push(termin.getHours() + ":" + termin.getMinutes());
+        }
+        new_films.push(new_film);
+      }
+      this.films = new_films;
+    },
+  },
+
+  async mounted() {
+    let x = await this.$store.dispatch("movie/getTable", this.dateInput);
+    let new_films = [];
+    for (let i of x.data) {
+      let new_film = {
+        id: i.movieId,
+        title: i.title,
+        desc: i.description,
+        hours: [],
+      };
+
+      for (let show of i.showings) {
+        let termin = new Date(show.item1);
+        new_film.hours.push(termin.getHours() + ":" + termin.getMinutes());
+      }
+      new_films.push(new_film);
+    }
+    this.films = new_films;
+  },
 };
 </script>

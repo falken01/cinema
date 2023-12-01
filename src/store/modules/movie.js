@@ -9,7 +9,12 @@ export const state = {
 };
 
 export const actions = {
-  getTable(date) {
-    return axiosService.getTable(date).then(res => console.log(res)).catch(e => console.log(e))
-  }
-}
+  getTable(context, date) {
+    return axiosService
+      .getTable(date)
+      .then((res) => {
+        return res;
+      })
+      .catch((e) => console.log(e));
+  },
+};
