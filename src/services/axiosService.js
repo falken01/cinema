@@ -23,7 +23,17 @@ export default {
   },
   getTable(date) {
     return API_CLIENT.get(`/Movie/date/${date}`);
-  }
+  },
+  getHalls() {
+    return API_CLIENT.get(`/Hall`);
+  },
+  addHall(data) {
+    return API_CLIENT.post(`/Hall`, data);
+  },
+  deleteHall(id) {
+    return API_CLIENT.delete(`/Hall/${id}`);
+  },
+  editHall(data) {
+    return API_CLIENT.put(`/Hall/${data.hallId}`, data);
+  },
 };
-
-
