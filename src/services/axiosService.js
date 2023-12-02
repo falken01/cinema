@@ -36,4 +36,16 @@ export default {
   editHall(data) {
     return API_CLIENT.put(`/Hall/${data.hallId}`, data);
   },
+  addMovie(data) {
+    return API_CLIENT.post(`/Movie`, data);
+  },
+  deleteMovie(id) {
+    return API_CLIENT.delete(`/Movie/${id}`);
+  },
+  editMovie(data) {
+    return API_CLIENT.put(`/Movie/${data.movieId}`, data);
+  },
+  getMovies() {
+    return API_CLIENT.get(`/Movie`);
+  },
 };

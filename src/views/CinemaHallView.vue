@@ -96,7 +96,7 @@ export default {
     },
 
     async ReadHallsAndClearPanel() {
-      let x = await this.$store.dispatch("hall/getHalls", this.dateInput);
+      let x = await this.$store.dispatch("hall/getHalls");
       this.hallList = x.data;
       this.AddButtonColor = "red";
       this.EditButtonColor = "red";
@@ -137,7 +137,7 @@ export default {
           rows: this.currentRowsNumber,
           columns: this.currentColumnsNumber,
         });
-        let x = await this.$store.dispatch("hall/getHalls", this.dateInput);
+        let x = await this.$store.dispatch("hall/getHalls");
         this.hallList = x.data;
         this.hallChanged = false;
         for (let h of this.hallList) {

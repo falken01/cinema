@@ -17,4 +17,36 @@ export const actions = {
       })
       .catch((e) => console.log(e));
   },
+  getMovies() {
+    return axiosService
+      .getMovies()
+      .then((res) => {
+        return res;
+      })
+      .catch((e) => console.log(e));
+  },
+  addMovie(context, data) {
+    return axiosService
+      .addMovie(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.log(e));
+  },
+  editMovie(context, data) {
+    return axiosService
+      .editMovie(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.log(e));
+  },
+  deleteMovie(context, data) {
+    return axiosService
+      .deleteMovie(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.log(e));
+  },
 };
