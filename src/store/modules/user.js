@@ -5,6 +5,7 @@ export const namespaced = true;
 export const state = {
   role: "", // user, employee
   islogged: false,
+  name: "",
   normalTickets: 0,
   discountTickets: 0,
 };
@@ -13,6 +14,7 @@ export const mutations = {
   CREATE_ROLE(state, userDetails) {
     state.role = userDetails.role;
     state.islogged = true;
+    state.name = userDetails.name;
   }
 };
 
@@ -26,13 +28,21 @@ export const actions = {
   signIn({ dispatch }, credentials) {
     return axiosService.login(credentials).then((res)=>{
       console.log(res)
-      dispatch("getRole");
+      dispatch("getRole",credentials.name);
     }).catch((e)=>console.log(e))
   },
-  getRole({ commit }) {
+  getRole({ commit },name) {
     return axiosService.getRole().then((res)=>{
       console.log(res)
-      commit("CREATE_ROLE", res.data);
+      const user = {
+        "name": name,
+        "role": res.data
+      };
+      commit("CREATE_ROLE", user);
     }).catch((e)=>console.log(e))
   }
 };
+
+export const getters = {
+
+}

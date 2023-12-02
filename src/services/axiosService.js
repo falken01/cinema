@@ -24,6 +24,12 @@ export default {
   getTable(date) {
     return API_CLIENT.get(`/Movie/date/${date}`);
   },
+  getShowing(id) {
+    return API_CLIENT.get(`/Showing/${id}`);
+  },
+  getMovie(id) {
+    return API_CLIENT.get(`/Movie/${id}`);
+  },
   getHalls() {
     return API_CLIENT.get(`/Hall`);
   },

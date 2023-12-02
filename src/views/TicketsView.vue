@@ -1,10 +1,10 @@
 <template>
   <div class="tickets">
-    <div class="mt-8 d-flex justify-start">
+    <div class="mt-8 d-flex">
       <v-col cols="3">
-        <div class="film-info d-flex justify-start align-center">
-          Film: <br />
-          Opis: <br />
+        <div class="film-info align-self-center">
+          Film: {{ this.movie.title }}<br />
+          Opis: {{ this.movie.description }}<br />
         </div>
       </v-col>
       <v-col>
@@ -18,7 +18,6 @@
               <v-select
                 v-model="tickets.normal"
                 :items="numbers"
-                :rules="[(v) => !!v || 'Item is required']"
                 label="Item"
                 required
               ></v-select>
@@ -33,7 +32,6 @@
               <v-select
                 v-model="tickets.discounted"
                 :items="numbers"
-                :rules="[(v) => !!v || 'Item is required']"
                 label="Item"
                 required
               ></v-select>
@@ -42,12 +40,13 @@
         </div>
       </v-col>
     </div>
-    <NavigationPanel path="/seats"></NavigationPanel>
+    <NavigationPanel path="/seats" :disable="numberOfTickets()" @nextPage="sumUpTicket"></NavigationPanel>
   </div>
 </template>
 
 <script>
-import NavigationPanel from "../components/NavigationPanel";
+  import { mapState } from 'vuex'
+  import NavigationPanel from "../components/NavigationPanel";
 export default {
   name: "TicketsView",
   components: { NavigationPanel },
@@ -60,6 +59,24 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState("movie",["movie"])
+  },
+  methods:{
+      numberOfTickets(){
+          console.log(this.tickets.normal + this.tickets.discounted)
+          if(this.tickets.normal + this.tickets.discounted < 1){
+            return true
+          } else {
+            return false
+          }
+      }
+  },
+  created() {
+    this.$store.dispatch("movie/getShowing", this.$route.params.id).then(()=>{
+
+    }).catch(e=>console.log(e))
+  }
 };
 </script>
 

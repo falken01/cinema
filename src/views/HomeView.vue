@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <v-text-field class="mt-8" type="date" v-model="dateInput"></v-text-field>
+    <div v-if="this.films.length > 0">
     <v-card
       class="mt-8"
       color="indigo"
@@ -20,34 +21,41 @@
         <div class="align-self-center ml-auto flex-shrink-1" cols="3">
           <v-btn
             class="mr-4"
-            v-for="(hour, i) in film.hours"
+            v-for="(hour,i) in film.hours"
             :key="i"
-            :disabled="!isLoggedin"
+            :disabled="!islogged"
+            @click="this.$router.push({path:'tickets/'+hour.showingId })"
           >
-            {{ hour }}
+            {{ hour.hour }}
           </v-btn>
-          <v-tooltip activator="parent" location="start" :disabled="isLoggedin"
+          <v-tooltip activator="parent" location="start" :disabled="islogged"
             >Zaloguj się by zarezerwować</v-tooltip
           >
         </div>
       </div>
     </v-card>
+    </div>
+    <div class="mt-4" v-else>
+      Brak filmów na ten dzień
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+  import { mapState } from 'vuex'
+  // @ is an alias to /src
 export default {
   name: "HomeView",
   components: {},
   data() {
     return {
-      isLoggedin: false,
       dateInput: new Date().toISOString().substr(0, 10),
       films: [],
     };
   },
-
+  computed: {
+    ...mapState('user',['islogged'])
+  },
   watch: {
     async dateInput(newDate) {
       let x = await this.$store.dispatch("movie/getTable", newDate);
@@ -57,12 +65,16 @@ export default {
           id: i.movieId,
           title: i.title,
           desc: i.description,
-          hours: [],
+          hours: []
         };
 
         for (let show of i.showings) {
           let termin = new Date(show.item1);
-          new_film.hours.push(termin.getHours() + ":" + termin.getMinutes());
+          let obj = {
+            hour: termin.getHours() + ":" + termin.getMinutes(),
+            showingId:show.item2
+          };
+          new_film.hours.push(obj);
         }
         new_films.push(new_film);
       }
@@ -78,12 +90,16 @@ export default {
         id: i.movieId,
         title: i.title,
         desc: i.description,
-        hours: [],
+        hours: []
       };
 
       for (let show of i.showings) {
         let termin = new Date(show.item1);
-        new_film.hours.push(termin.getHours() + ":" + termin.getMinutes());
+        let obj = {
+          hour: termin.getHours() + ":" + termin.getMinutes(),
+          showingId: show.item2
+        };
+        new_film.hours.push(obj);
       }
       new_films.push(new_film);
     }
