@@ -3,9 +3,12 @@
     <v-app id="inspire">
       <v-app-bar class="d-block" color="deep-purple" fixed>
         <v-app-bar-title @click="$router.push({ path: '/' })" class="text-left"><v-btn class="text-md-left">Kino</v-btn></v-app-bar-title>
-        <template v-slot:append>
+        <template v-if="!islogged" v-slot:append>
           <v-btn @click="goToLogin">Zaloguj</v-btn>
           <v-btn @click="goToRegister">Zarejestruj</v-btn>
+        </template>
+        <template v-else v-slot:append>
+          <v-btn @click="logout">Wyloguj</v-btn>
         </template>
       </v-app-bar>
       <v-container class="mt-8">
@@ -16,6 +19,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
 export default {
   methods: {
     goToLogin() {
@@ -24,6 +28,14 @@ export default {
     goToRegister() {
       this.$router.push({ name: "register" });
     },
+  },
+  computed: {
+    ...mapState('user',['islogged'])
+  },
+  data () {
+    return {
+      isVisible: true
+    }
   },
 };
 </script>

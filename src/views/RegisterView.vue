@@ -84,8 +84,9 @@ export default {
       }
     },
     applyRegistration() {
-      console.log(this.collectData())
-      this.$store.dispatch("user/register",this.collectData())
+      this.$store.dispatch("user/register",this.collectData()).then(()=>{
+        this.$router.push({path:"/"})
+      })
     }
   },
 };

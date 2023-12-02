@@ -66,7 +66,9 @@ export default {
   methods: {
     loginMethod() {
       this.$store
-        .dispatch("user/signIn", this.collectData)
+        .dispatch("user/signIn", this.collectData).then(()=>{
+        this.$router.push({path:"/"})
+      })
     },
   },
 };
