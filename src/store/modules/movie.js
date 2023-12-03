@@ -4,6 +4,8 @@ export const namespaced = true;
 
 export const state = {
   movie: {
+    movieId:0,
+    showingId:0,
     title: "",
     description: "",
   }
@@ -29,17 +31,22 @@ export const actions = {
     return axiosService
         .getShowing(id)
         .then((res) => {
-          dispatch("getMovie",res.data.movieId)
+          dispatch("getMovie",res.data.movieId,id)
         })
         .catch((e) => console.log(e));
   },
-  getMovie({commit},id) {
+  getMovie({commit},id,id2) {
     return axiosService
         .getMovie(id)
         .then((res) => {
-          console.log(res);
-          commit("USE_MOVIE",res.data)
+          let details = {
+              title: res.data.title,
+              description: res.data.description,
+              showingId: id2,
+              movieId: id
+          }
+          commit("USE_MOVIE",details)
         })
         .catch((e) => console.log(e));
-  }
+  },
 };

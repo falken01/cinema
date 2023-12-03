@@ -18,6 +18,12 @@ export default {
     API_CLIENT.withCredentials = true;
     return API_CLIENT.post("/Account/login", userDetails);
   },
+  logout() {
+    return API_CLIENT.get("/Account/logout");
+  },
+  reserve() {
+    return API_CLIENT.post("/create");
+  },
   getRole() {
     return API_CLIENT.get("/Account/roles");
   },
@@ -29,6 +35,9 @@ export default {
   },
   getMovie(id) {
     return API_CLIENT.get(`/Movie/${id}`);
+  },
+  getReservations() {
+    return API_CLIENT.get("/Reservation");
   },
   getHalls() {
     return API_CLIENT.get(`/Hall`);

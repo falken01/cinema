@@ -12,7 +12,7 @@ export default {
     path: String,
     disable: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   methods:{

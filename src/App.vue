@@ -28,6 +28,11 @@ export default {
     goToRegister() {
       this.$router.push({ name: "register" });
     },
+    logout(){
+      this.$store.dispatch("user/logout").then(()=>{
+        this.$router.push({ name: "home" });
+      })
+    }
   },
   computed: {
     ...mapState('user',['islogged'])

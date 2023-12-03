@@ -64,13 +64,11 @@ export default {
   },
   methods:{
       numberOfTickets(){
-          console.log(this.tickets.normal + this.tickets.discounted)
-          if(this.tickets.normal + this.tickets.discounted < 1){
-            return true
-          } else {
-            return false
-          }
-      }
+          return this.tickets.normal + this.tickets.discounted < 1;
+      },
+    sumUpTicket() {
+        this.$store.dispatch("order/initTickets",this.tickets)
+    }
   },
   created() {
     this.$store.dispatch("movie/getShowing", this.$route.params.id).then(()=>{
