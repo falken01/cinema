@@ -54,4 +54,10 @@ export default {
   getMovies() {
     return API_CLIENT.get(`/Movie`);
   },
+  getShowings() {
+    return API_CLIENT.get(`/Showing`);
+  },
+  addShowing(data) {
+    return API_CLIENT.post(`/Showing`, data);
+  },
 };
