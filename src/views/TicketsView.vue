@@ -38,9 +38,9 @@ export default {
   components: { NavigationPanel },
   data() {
     return {
-      numbers: [0, 1, 2, 3, 4, 5],
+      numbers: [1],
       tickets: {
-        normal: 0,
+        normal: 1,
         discounted: 0,
       },
     };

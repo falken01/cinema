@@ -46,13 +46,15 @@
     accept(){
         this.$store.dispatch("order/confirm",this.reservations).then((r)=>
         {
-          if (r.data.reservationId != 0)
-          {
-            this.$router.push("/my_reservation");
-          }
-          else{
-            this.message = "Nie udało się potwierdzić - inny użytkownik ma wyższy priorytet - spróbuj ponownie później (konkurent może zrezygnować)";
-          }
+          console.log(r)
+          console.log(r.data.reservationId)
+            if (r.data.reservationId != 0)
+            {
+              this.$router.push("/my_reservation");
+            }
+            else{
+              this.message = "Nie udało się potwierdzić - inny użytkownik ma wyższy priorytet - spróbuj ponownie później (konkurent może zrezygnować)";
+            }
         }).catch(()=>{
           this.message = "Nie udało się potwierdzić - inny użytkownik ma wyższy priorytet - spróbuj ponownie później (konkurent może zrezygnować)";
         })
