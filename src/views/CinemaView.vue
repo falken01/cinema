@@ -10,7 +10,7 @@
         :row="j"
       />
     </div>
-    <NavigationPanel path="/summary" @nextPage="reserve"></NavigationPanel>
+    <NavigationPanel path="/summary" :disable="selectedSeats()" @nextPage="reserve"></NavigationPanel>
   </div>
 </template>
 
@@ -25,8 +25,9 @@ export default {
     NavigationPanel,
   },
   computed:{
-    ...mapState("movie",["showingId"]),
-    ...mapState("hall",["takenSeats"]),
+    ...mapGetters('order',['sumTickets']),
+    ...mapState("movie",["movie"]),
+    ...mapState("hall",["takenSeats","selected"]),
     ...mapState("hall",["reservedSeats"]),
     ...mapGetters("hall",["isTaken"]),
 
@@ -41,7 +42,19 @@ export default {
     isTakenPlace(row,column){
       return (this.takenSeats.filter(obj => obj.row === row && obj.column === column)).length > 0
     },
-
+    selectedSeats(){
+      return !(this.selected === this.sumTickets);
+    }, reserve(){
+      for(let seat of this.reservedSeats) {
+        let newSeat = {
+          row: seat.row,
+          column: seat.column,
+          showingId: this.movie.showingId
+        };
+        console.log(newSeat)
+        this.$store.dispatch("order/reserve",newSeat)
+      }
+    }
   }
 };
 </script>

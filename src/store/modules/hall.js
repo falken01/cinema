@@ -16,9 +16,7 @@ export const mutations = {
     DECREMENT_SELECTED(state,seat) {
         state.selected--;
         const indexToRemove = state.reservedSeats.findIndex(obj => obj.row === seat.row && obj.column === seat.column);
-// Check if the object was found
         if (indexToRemove !== -1) {
-            // Remove the object at the found index
             state.reservedSeats.splice(indexToRemove, 1);
         }
     },

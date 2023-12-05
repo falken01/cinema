@@ -11,7 +11,7 @@
       Cena:{{this.price}} zł
     </div>
     <div class="mt-4 d-flex justify-space-around">
-      <v-btn  @click="$router.go(-1)">Wstecz</v-btn><v-btn @click="accept">Akceptuję</v-btn>
+      <v-btn  @click="goBack">Wstecz</v-btn><v-btn @click="accept">Akceptuję</v-btn>
     </div>
   </div>
 </template>
@@ -25,7 +25,10 @@
       timerCount: 600,
     };
   },
-  computed: {
+    created() {
+      console.log(JSON.parse(JSON.stringify(this.reservations)))
+    },
+    computed: {
     minuteCalc() {
       let seconds =
         this.timerCount % 60 < 10
@@ -34,12 +37,17 @@
       return Math.floor(this.timerCount / 60) + ":" + seconds;
     },
     ...mapState("order",["tickets"]),
+    ...mapState("order",["reservations"]),
     ...mapState("hall",["reservedSeats"]),
     ...mapGetters("order",["price"])
   },
     methods:{
     accept(){
-
+        this.$store.dispatch("order/confirm",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
+      },
+    goBack(){
+        this.$store.dispatch("order/removePending",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
+        this.$router.go(-1)
       }
     },
   watch: {

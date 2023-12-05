@@ -4,13 +4,17 @@ export const namespaced = true;
 
 export const state = {
     tickets: {
-        normal: "",
-        discounted: "",
-    }
+        normal: 0,
+        discounted: 0,
+    },
+    reservations:[]
 };
 export const mutations = {
     INIT_TICKETS(state,tickets) {
         state.tickets = tickets
+    },
+    CREATE_RESERVATION(state, reservation) {
+      state.reservations.push(reservation)
     }
 };
 
@@ -18,14 +22,37 @@ export const actions = {
     initTickets({commit},tickets){
         commit("INIT_TICKETS",tickets)
     },
-    reserve({dispatch}) {
+    // eslint-disable-next-line no-unused-vars
+    reserve({commit},seat) {
         return axiosService
-            .reserve()
+            .reserve(seat)
             .then((res) => {
-                dispatch("getMovie",res.data.movieId)
+               commit("CREATE_RESERVATION",res.data)
             })
             .catch((e) => console.log(e));
     },
+    // eslint-disable-next-line no-unused-vars
+    confirm({commit},reservations){
+        for(let reservation of reservations) {
+            return axiosService
+                .confirm(reservation)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((e) => console.log(e));
+        }
+    },
+    // eslint-disable-next-line no-unused-vars
+    removePending({commit},reservations){
+        for(let reservation of reservations) {
+            return axiosService
+                .removePending(reservation)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((e) => console.log(e));
+        }
+    }
 };
 
 export const getters = {

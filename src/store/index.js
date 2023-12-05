@@ -3,6 +3,7 @@ import * as user from "@/store/modules/user.js";
 import * as movie from "@/store/modules/movie.js";
 import * as hall from "@/store/modules/hall.js";
 import * as order from "@/store/modules/order.js";
+import * as showing from "@/store/modules/showing.js";
 
 export default new Vuex.Store({
   state: {},
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     user,
     movie,
     hall,
-    order
+    order,
+    showing
   },
 });

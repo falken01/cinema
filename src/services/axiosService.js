@@ -21,8 +21,14 @@ export default {
   logout() {
     return API_CLIENT.get("/Account/logout");
   },
-  reserve() {
-    return API_CLIENT.post("/create");
+  reserve(seat) {
+    return API_CLIENT.post("/create",seat);
+  },
+  confirm(reservation) {
+    return API_CLIENT.post("/confirm",reservation);
+  },
+  removePending(reservation) {
+    return API_CLIENT.delete("/remove-pending",reservation);
   },
   getRole() {
     return API_CLIENT.get("/Account/roles");
@@ -50,5 +56,23 @@ export default {
   },
   editHall(data) {
     return API_CLIENT.put(`/Hall/${data.hallId}`, data);
+  },
+  addMovie(data) {
+    return API_CLIENT.post(`/Movie`, data);
+  },
+  deleteMovie(id) {
+    return API_CLIENT.delete(`/Movie/${id}`);
+  },
+  editMovie(data) {
+    return API_CLIENT.put(`/Movie/${data.movieId}`, data);
+  },
+  getMovies() {
+    return API_CLIENT.get(`/Movie`);
+  },
+  getShowings() {
+    return API_CLIENT.get(`/Showing`);
+  },
+  addShowing(data) {
+    return API_CLIENT.post(`/Showing`, data);
   },
 };

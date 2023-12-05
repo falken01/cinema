@@ -71,7 +71,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("movie/getShowing", this.$route.params.id).then(()=>{
+    this.$store.dispatch("movie/getShowingById", this.$route.params.id).then(()=>{
 
     }).catch(e=>console.log(e))
   }
