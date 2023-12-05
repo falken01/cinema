@@ -10,9 +10,6 @@
     >
       <div class="d-flex flex-wrap">
         <v-avatar cols="3" class="ma-3" size="125" rounded="0">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"
-          ></v-img>
         </v-avatar>
         <v-card-item cols="9">
           <v-card-title>{{ film.title }}</v-card-title>

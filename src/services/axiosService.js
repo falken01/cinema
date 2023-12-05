@@ -5,6 +5,11 @@ let API_CLIENT = axios.create({
   headers: {
     Accept: "*/*",
     "Content-Type": "application/json",
+    // "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    // "Access-Control-Allow-Headers":
+    //   "Origin, X-Requested-With, Content-Type, Accept",
+    // "Access-Control-Allow-Credentials": "true",
   },
   timeout: 10000,
 });
@@ -80,5 +85,8 @@ export default {
   },
   getMyReservations() {
     return API_CLIENT.get(`/Reservation`);
+  },
+  getUserDetails() {
+    return API_CLIENT.get("/Account/account-details");
   },
 };
