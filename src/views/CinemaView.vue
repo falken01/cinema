@@ -1,12 +1,13 @@
 <template>
   <div class="cinema mt-16">
     <div id="screen">EKRAN</div>
-    <div v-for="j in 4" :num="j" :key="j" class="d-flex justify-center">
+    <div v-for="j in this.rows" :num="j" :key="j" class="d-flex justify-center">
       <seat
-        v-for="i in 10"
+        v-for="i in this.columns"
         :num="i"
         :key="i"
         :is-taken="isTakenPlace(j,i)"
+        :is-pending="isSeatPendingReservation(j,i)"
         :row="j"
       />
     </div>
@@ -27,20 +28,25 @@ export default {
   computed:{
     ...mapGetters('order',['sumTickets']),
     ...mapState("movie",["movie"]),
-    ...mapState("hall",["takenSeats","selected"]),
+    ...mapState("hall",["selected"]),
     ...mapState("hall",["reservedSeats"]),
+    ...mapState("hall",["rows", "columns"]),
+    ...mapState("showing",["showingId", "movieId", "takenSeats", "hallId"]),
     ...mapGetters("hall",["isTaken"]),
-
   },
   data() {
     return {};
   },
-  created() {
-    this.$store.dispatch("hall/getReservations", this.showingId)
+  async mounted() {
+    await this.$store.dispatch("showing/getShowingWithTakenSeats", this.movie.showingId);
+    await this.$store.dispatch("hall/getHall", this.hallId);
   },
   methods: {
     isTakenPlace(row,column){
       return (this.takenSeats.filter(obj => obj.row === row && obj.column === column)).length > 0
+    },
+    isSeatPendingReservation(row,column){
+      return (this.takenSeats.filter(obj => obj.row === row && obj.column === column && obj.isPending == true)).length > 0
     },
     selectedSeats(){
       return !(this.selected === this.sumTickets);
@@ -55,7 +61,7 @@ export default {
         this.$store.dispatch("order/reserve",newSeat)
       }
     }
-  }
+  },
 };
 </script>
 <style>

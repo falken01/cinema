@@ -5,7 +5,9 @@ export const namespaced = true;
 export const state = {
     selected: 0,
     takenSeats:[],
-    reservedSeats:[]
+    reservedSeats:[],
+    rows: 0,
+    columns: 0,
 }
 
 export const mutations = {
@@ -22,7 +24,13 @@ export const mutations = {
     },
     SET_TAKEN_SEATS(state, seats){
         state.takenSeats = seats
-    }
+    },
+    SET_ROWS(state, rows){
+        state.rows = rows
+    },
+    SET_COLUMNS(state, columns){
+        state.columns = columns
+    },
 };
 export const actions = {
     getReservations({commit},id) {
@@ -50,10 +58,12 @@ export const actions = {
       })
       .catch((e) => console.log(e));
   },
-  getHall(context, id) {
+  getHall({commit}, id) {
     return axiosService
       .getHall(id)
       .then((res) => {
+        commit("SET_ROWS",res.data.rows);
+        commit("SET_COLUMNS",res.data.columns);
         return res;
       })
       .catch((e) => console.log(e));

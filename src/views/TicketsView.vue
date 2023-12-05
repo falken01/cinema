@@ -11,26 +11,12 @@
         <div class="tickets-info">
           <div class="d-flex align-center">
             <v-col cols="3">
-              <p>Bilety normalne:</p>
+              <p>Bilety:</p>
             </v-col>
             <v-col cols="6">Cena: 20zł</v-col>
             <v-col cols="3">
               <v-select
                 v-model="tickets.normal"
-                :items="numbers"
-                label="Item"
-                required
-              ></v-select>
-            </v-col>
-          </div>
-          <div class="d-flex align-center">
-            <v-col cols="3">
-              <p>Bilety ulgowe:</p>
-            </v-col>
-            <v-col cols="6">Cena: 10 zł </v-col>
-            <v-col cols="3">
-              <v-select
-                v-model="tickets.discounted"
                 :items="numbers"
                 label="Item"
                 required

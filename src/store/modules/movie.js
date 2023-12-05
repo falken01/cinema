@@ -14,7 +14,7 @@ export const mutations = {
   USE_MOVIE(state, movieDetails) {
     (state.movie.title = movieDetails.title),
     (state.movie.description = movieDetails.description);
-    (state.movie.movieId = movieDetails.id),
+    (state.movie.movieId = movieDetails.movieId),
     (state.movie.showingId = movieDetails.showingId);
   },
 };
