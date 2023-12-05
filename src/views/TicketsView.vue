@@ -57,6 +57,8 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch("hall/resetState");
+    this.$store.dispatch("order/resetState");
     this.$store.dispatch("movie/getShowingById", this.$route.params.id).then(()=>{
 
     }).catch(e=>console.log(e))

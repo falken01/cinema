@@ -15,6 +15,13 @@ export const mutations = {
     },
     CREATE_RESERVATION(state, reservation) {
       state.reservations.push(reservation)
+    },
+    RESET_STATE(state){
+        state.tickets = {
+            normal: 0,
+            discounted: 0,
+        };
+        state.reservations = [];
     }
 };
 
@@ -48,6 +55,9 @@ export const actions = {
                 })
                 .catch((e) => console.log(e));
         }
+    },
+    resetState({commit}){
+        commit("RESET_STATE")
     }
 };
 

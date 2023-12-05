@@ -31,6 +31,13 @@ export const mutations = {
     SET_COLUMNS(state, columns){
         state.columns = columns
     },
+    RESET_STATE(state){
+        state.selected = 0;
+        state.takenSeats = [];
+        state.reservedSeats = [];
+        state.rows = 0;
+        state.columns = 0;
+    },
 };
 export const actions = {
     getReservations({commit},id) {
@@ -89,7 +96,10 @@ export const actions = {
     },
   decrement({commit},seat){
       commit("DECREMENT_SELECTED",seat)
-    }
+    },
+  resetState({commit}){
+      commit("RESET_STATE")
+    },
 };
 export const getters = {
 };
