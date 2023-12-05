@@ -1,7 +1,7 @@
 <template>
   <div
     class="seat mt-4 mr-2"
-    :class="{ reserved: isReserved, free: isFree, taken: isTaken }"
+    :class="{ reserved: isReserved, free: isFree, taken: isTaken && !isPending, pending: isPending }"
     @click="take"
   >
     {{ num }}
@@ -17,6 +17,7 @@ export default {
     num: Number,
     row: Number,
     isTaken: Boolean,
+    isPending: Boolean,
   },
   data() {
     return {
@@ -55,6 +56,10 @@ export default {
 }
 .free {
   background-color: green;
+}
+
+.pending {
+  background-color: yellow;
 }
 
 .taken {

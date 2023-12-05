@@ -83,6 +83,9 @@ export default {
   addShowing(data) {
     return API_CLIENT.post(`/Showing`, data);
   },
+  getShowingWithTakenSeats(id) {
+    return API_CLIENT.get(`/Showing/${id}/taken-seats`);
+  },
   getMyReservations() {
     return API_CLIENT.get(`/Reservation`);
   },
