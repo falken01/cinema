@@ -3,14 +3,26 @@
   <div class="hall d-flex justify-space-around">
     <div class="hallList mt-8 justify-center">
       <p>Moje rezerwacje:</p>
-      <textarea
-        readonly
-        v-model="ReservationsText"
-        style="width: 100%; height: 200px"
-      ></textarea>
+      <div>
+        <div v-if="this.ReservationsList.length > 0">
+          <v-card
+            class="mt-8 mb-8 pl-4 pr-4"
+            color="indigo"
+            v-for="reservation in this.ReservationsList"
+            :key="reservation.reservationId"
+          >Rezarwacja nr {{reservation.reservationId}} Rząd: {{reservation.row}} Miejsce: {{reservation.column}}
+          </v-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<!-- <textarea
+        readonly
+        v-model="ReservationsText"
+        style="width: 100%; height: 200px"
+      ></textarea>  -->
 
 <script>
 export default {
@@ -25,6 +37,7 @@ export default {
   async mounted() {
     let res = await this.$store.dispatch("reservation/getMyReservations");
     if (res && res.status == 200) {
+      this.ReservationsList = res.data;
       for (let reservation of res.data) {
         console.log(reservation);
         if (reservation.reservationId != 0) {
