@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pt-4">Edytor Filmów</h2>
+  <h2 class="pt-4">Edytor filmów</h2>
   <div class="movie d-flex justify-space-around">
     <div class="movieList mt-8 justify-center">
       <v-btn

@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pt-4">Edytor pokazów</h2>
+  <h2 class="pt-4">Edytor seansów</h2>
   <div class="hall d-flex justify-space-around">
     <div class="hallList mt-8 justify-center">
       <p>Wybrana sala:</p>
