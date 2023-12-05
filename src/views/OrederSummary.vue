@@ -12,7 +12,7 @@
     </div>
     <div class="red">{{ this.message }}</div>
     <div class="mt-4 d-flex justify-space-around">
-      <v-btn  @click="goBack">Wstecz</v-btn><v-btn @click="accept">Akceptuję</v-btn>
+      <v-btn  @click="goBack">Anuluj</v-btn><v-btn @click="accept">Akceptuję</v-btn>
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@
       },
     goBack(){
         this.$store.dispatch("order/removePending",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
-        this.$router.go(-1)
+        this.$router.push({ path: "/" });
       }
     },
   watch: {
