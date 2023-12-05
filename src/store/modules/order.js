@@ -35,11 +35,7 @@ export const actions = {
     confirm({commit},reservations){
         for(let reservation of reservations) {
             return axiosService
-                .confirm(reservation)
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((e) => console.log(e));
+                .confirm(reservation);
         }
     },
     // eslint-disable-next-line no-unused-vars

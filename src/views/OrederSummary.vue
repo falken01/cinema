@@ -46,8 +46,6 @@
     accept(){
         this.$store.dispatch("order/confirm",this.reservations).then((r)=>
         {
-          console.log(r)
-          console.log(r.data.reservationId)
             if (r.data.reservationId != 0)
             {
               this.$router.push("/my_reservation");
