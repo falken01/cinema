@@ -47,8 +47,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45vh;
-  width: 35vh;
+  height: 440px;
+  width: 300px;
   flex-direction: column;
   gap: 15px;
   position: absolute;
@@ -62,7 +62,7 @@
 </style>
 
 <script>
-  // @ is an alias to /src
+// @ is an alias to /src
 export default {
   name: "RegisterView",
   data() {
@@ -79,15 +79,15 @@ export default {
         return {
           email: this.login,
           password: this.password,
-          name: this.name
+          name: this.name,
         };
       }
     },
     applyRegistration() {
-      this.$store.dispatch("user/register",this.collectData()).then(()=>{
-        this.$router.push({path:"/"})
-      })
-    }
+      this.$store.dispatch("user/register", this.collectData()).then(() => {
+        this.$router.push({ path: "/" });
+      });
+    },
   },
 };
 </script>

@@ -50,6 +50,14 @@ export const actions = {
       })
       .catch((e) => console.log(e));
   },
+  getHall(context, id) {
+    return axiosService
+      .getHall(id)
+      .then((res) => {
+        return res;
+      })
+      .catch((e) => console.log(e));
+  },
   editHall(context, data) {
     return axiosService
       .editHall(data)

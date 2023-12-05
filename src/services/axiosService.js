@@ -53,6 +53,9 @@ export default {
   getHalls() {
     return API_CLIENT.get(`/Hall`);
   },
+  getHall(id) {
+    return API_CLIENT.get(`/Hall/${id}`);
+  },
   addHall(data) {
     return API_CLIENT.post(`/Hall`, data);
   },
@@ -79,6 +82,9 @@ export default {
   },
   addShowing(data) {
     return API_CLIENT.post(`/Showing`, data);
+  },
+  getMyReservations() {
+    return API_CLIENT.get(`/Reservation`);
   },
   getUserDetails() {
     return API_CLIENT.get("/Account/account-details");
