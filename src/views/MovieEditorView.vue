@@ -85,25 +85,39 @@ export default {
 
   watch: {
     currentTitle(newTitle) {
-      this.movieChanged = this.downloadedMovie?.title != newTitle;
+      this.movieChanged =
+        this.downloadedMovie == null || this.downloadedMovie?.title != newTitle;
+
+      console.log(this.movieChanged);
     },
     currentDescription(newDescription) {
-      this.movieChanged = this.downloadedMovie?.description != newDescription;
+      this.movieChanged =
+        this.downloadedMovie == null ||
+        this.downloadedMovie?.description != newDescription;
     },
     currentActors(newActors) {
-      this.movieChanged = this.downloadedMovie?.actors != newActors;
+      this.movieChanged =
+        this.downloadedMovie == null ||
+        this.downloadedMovie?.actors != newActors;
     },
     currentDirector(newDirector) {
-      this.movieChanged = this.downloadedMovie?.director != newDirector;
+      this.movieChanged =
+        this.downloadedMovie == null ||
+        this.downloadedMovie?.director != newDirector;
     },
     currentReleaseYear(newReleaseYear) {
-      this.movieChanged = this.downloadedMovie?.yearOfRelease != newReleaseYear;
+      this.movieChanged =
+        this.downloadedMovie == null ||
+        this.downloadedMovie?.yearOfRelease != newReleaseYear;
     },
     currentDuration(newDuration) {
-      this.movieChanged = this.downloadedMovie?.duration != newDuration;
+      this.movieChanged =
+        this.downloadedMovie == null ||
+        this.downloadedMovie?.duration != newDuration;
     },
     currentGenre(newGenre) {
-      this.movieChanged = this.downloadedMovie?.genre != newGenre;
+      this.movieChanged =
+        this.downloadedMovie == null || this.downloadedMovie?.genre != newGenre;
     },
 
     movieChanged(newmoviechanged) {
@@ -175,7 +189,8 @@ export default {
           director: this.currentDirector,
           actors: this.currentActors,
         });
-        this.ReadMoviesAndClearPanel();
+        await this.ReadMoviesAndClearPanel();
+        this.AddButtonColor = "green";
       }
     },
 
