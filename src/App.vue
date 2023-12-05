@@ -14,6 +14,11 @@
           <v-btn @click="this.$router.push({ name: 'showing' })">Seanse</v-btn>
           <v-btn @click="this.$router.push({ name: 'movie' })">Filmy</v-btn>
         </template>
+        <template v-else-if="islogged && role.includes('Customer')">
+          <v-btn @click="this.$router.push({ name: 'my_reservation' })"
+            >Moje rezerwacje</v-btn
+          >
+        </template>
         <div v-if="islogged">
           <v-btn @click="logout">Wyloguj</v-btn>
         </div>
