@@ -33,7 +33,7 @@ export default {
     take() {
       if (this.taken === true) {
         return 0;
-      } else if(this.isFree && !this.isReserved && !this.isTaken && this.selected < this.sumTickets){
+      } else if(this.isFree && !this.isReserved && (!this.isTaken || this.isPending) && this.selected < this.sumTickets){
         this.$store.dispatch("hall/increment",{"row":this.row,"column":this.num});
         this.isFree = !this.isFree;
         this.isReserved = !this.isReserved;
