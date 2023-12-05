@@ -57,7 +57,7 @@ export default {
       hallList: [],
       selectedHall: null,
       selectedMovie: null,
-      ChosenShowingsText: "a\nb\nc",
+      ChosenShowingsText: "",
       ShowingsList: [],
       MovieList: [],
       givenDate: "",
