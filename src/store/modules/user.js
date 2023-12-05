@@ -6,8 +6,6 @@ export const state = {
   role: "", // user, employee
   islogged: false,
   name: "",
-  normalTickets: 0,
-  discountTickets: 0,
 };
 
 export const mutations = {
@@ -15,6 +13,11 @@ export const mutations = {
     state.role = userDetails.role;
     state.islogged = true;
     state.name = userDetails.name;
+  },
+  LOGOUT(state) {
+    state.role= "", // user, employee
+    state.islogged= false,
+    state.name= ""
   }
 };
 
@@ -31,6 +34,12 @@ export const actions = {
       dispatch("getRole",credentials.name);
     }).catch((e)=>console.log(e))
   },
+  logout({ commit }) {
+    return axiosService.logout().then((res)=>{
+      console.log(res)
+      commit("LOGOUT");
+    }).catch((e)=>console.log(e))
+  },
   getRole({ commit },name) {
     return axiosService.getRole().then((res)=>{
       console.log(res)
@@ -40,7 +49,8 @@ export const actions = {
       };
       commit("CREATE_ROLE", user);
     }).catch((e)=>console.log(e))
-  }
+  },
+
 };
 
 export const getters = {

@@ -4,18 +4,31 @@
       Twoje bilety zostały zablokowane na czas 10 minut. Pozostało
       {{ minuteCalc }}
     </div>
+    <div class="mt-4">
+      Podsumowanie Twojego zamówienia: <br />
+      Bilety normalne: {{this.tickets.normal}} <br />
+      Bilety ulgowe: {{this.tickets.discounted}} <br />
+      Cena:{{this.price}} zł
+    </div>
+    <div class="mt-4 d-flex justify-space-around">
+      <v-btn  @click="goBack">Wstecz</v-btn><v-btn @click="accept">Akceptuję</v-btn>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+  import {mapState,mapGetters} from "vuex";
+  export default {
   name: "OrederSummary",
   data() {
     return {
       timerCount: 600,
     };
   },
-  computed: {
+    created() {
+      console.log(JSON.parse(JSON.stringify(this.reservations)))
+    },
+    computed: {
     minuteCalc() {
       let seconds =
         this.timerCount % 60 < 10
@@ -23,7 +36,20 @@ export default {
           : this.timerCount % 60;
       return Math.floor(this.timerCount / 60) + ":" + seconds;
     },
+    ...mapState("order",["tickets"]),
+    ...mapState("order",["reservations"]),
+    ...mapState("hall",["reservedSeats"]),
+    ...mapGetters("order",["price"])
   },
+    methods:{
+    accept(){
+        this.$store.dispatch("order/confirm",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
+      },
+    goBack(){
+        this.$store.dispatch("order/removePending",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
+        this.$router.go(-1)
+      }
+    },
   watch: {
     timerCount: {
       handler(value) {

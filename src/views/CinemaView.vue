@@ -6,28 +6,56 @@
         v-for="i in 10"
         :num="i"
         :key="i"
-        @click="$emit('toggle')"
-        :is-taken="false"
+        :is-taken="isTakenPlace(j,i)"
+        :row="j"
       />
     </div>
-    <NavigationPanel path="/summary"></NavigationPanel>
+    <NavigationPanel path="/summary" :disable="selectedSeats()" @nextPage="reserve"></NavigationPanel>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import seat from "../components/Seat.vue";
 import NavigationPanel from "../components/NavigationPanel";
-
+import {mapState,mapGetters} from "vuex";
 export default {
   name: "CinemaView",
   components: {
     seat,
     NavigationPanel,
   },
+  computed:{
+    ...mapGetters('order',['sumTickets']),
+    ...mapState("movie",["movie"]),
+    ...mapState("hall",["takenSeats","selected"]),
+    ...mapState("hall",["reservedSeats"]),
+    ...mapGetters("hall",["isTaken"]),
+
+  },
   data() {
     return {};
   },
+  created() {
+    this.$store.dispatch("hall/getReservations", this.showingId)
+  },
+  methods: {
+    isTakenPlace(row,column){
+      return (this.takenSeats.filter(obj => obj.row === row && obj.column === column)).length > 0
+    },
+    selectedSeats(){
+      return !(this.selected === this.sumTickets);
+    }, reserve(){
+      for(let seat of this.reservedSeats) {
+        let newSeat = {
+          row: seat.row,
+          column: seat.column,
+          showingId: this.movie.showingId
+        };
+        console.log(newSeat)
+        this.$store.dispatch("order/reserve",newSeat)
+      }
+    }
+  }
 };
 </script>
 <style>

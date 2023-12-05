@@ -8,11 +8,14 @@
   </div>
 </template>
 
+
 <script>
+  import {mapGetters,mapState} from "vuex";
 export default {
   name: "cinemaSeat",
   props: {
     num: Number,
+    row: Number,
     isTaken: Boolean,
   },
   data() {
@@ -21,11 +24,20 @@ export default {
       isFree: true,
     };
   },
+  computed: {
+    ...mapGetters('order',['sumTickets']),
+    ...mapState('hall',['selected',"reservedSeats"])
+  },
   methods: {
     take() {
       if (this.taken === true) {
-        return this.isTaken;
-      } else {
+        return 0;
+      } else if(this.isFree && !this.isReserved && !this.isTaken && this.selected < this.sumTickets){
+        this.$store.dispatch("hall/increment",{"row":this.row,"column":this.num});
+        this.isFree = !this.isFree;
+        this.isReserved = !this.isReserved;
+      } else if(!this.isFree && this.isReserved && !this.isTaken  && this.selected > 0){
+        this.$store.dispatch("hall/decrement",{"row":this.row,"column":this.num});
         this.isFree = !this.isFree;
         this.isReserved = !this.isReserved;
       }
