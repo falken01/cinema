@@ -50,7 +50,15 @@ export const actions = {
       commit("CREATE_ROLE", user);
     }).catch((e)=>console.log(e))
   },
-
+  getUserDetails({commit}) {
+    return axiosService.getUserDetails().then((res)=>{
+      const user = {
+        "name": res.name,
+        "role": res.data.roles,
+      };
+      commit("CREATE_ROLE", user);
+    }).catch((e)=>console.log(e))
+  },
 };
 
 export const getters = {

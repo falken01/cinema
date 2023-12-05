@@ -1,10 +1,15 @@
 import axios from "axios";
 let API_CLIENT = axios.create({
   baseURL: `https://localhost:5000`,
-  withCredentials: false, // This is the default
+  withCredentials: true, // This is the default
   headers: {
     Accept: "*/*",
     "Content-Type": "application/json",
+    // "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    // "Access-Control-Allow-Headers":
+    //   "Origin, X-Requested-With, Content-Type, Accept",
+    // "Access-Control-Allow-Credentials": "true",
   },
   timeout: 10000,
 });
@@ -74,5 +79,8 @@ export default {
   },
   addShowing(data) {
     return API_CLIENT.post(`/Showing`, data);
+  },
+  getUserDetails() {
+    return API_CLIENT.get("/Account/account-details");
   },
 };

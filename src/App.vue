@@ -9,7 +9,7 @@
         </template>
         <template v-else-if="islogged && role.includes('Worker')">
           <v-btn @click="this.$router.push({ name: 'halls' })">Sale</v-btn>
-          <v-btn @click="this.$router.push({ name: 'showings' })">Showings</v-btn>
+          <v-btn @click="this.$router.push({ name: 'showing' })">Showings</v-btn>
           <v-btn @click="this.$router.push({ name: 'movie' })">Filmy</v-btn>
         </template>
         <div v-if="islogged">
@@ -47,6 +47,9 @@ export default {
     return {
       isVisible: true
     }
+  },
+  mounted() {
+    this.$store.dispatch("user/getUserDetails");
   },
 };
 </script>

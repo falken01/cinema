@@ -49,7 +49,7 @@ export default {
         let newSeat = {
           row: seat.row,
           column: seat.column,
-          showingId: this.movie.showingId
+          showingId: parseInt(this.movie.showingId)
         };
         console.log(newSeat)
         this.$store.dispatch("order/reserve",newSeat)
