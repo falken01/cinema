@@ -44,6 +44,7 @@
     methods:{
     accept(){
         this.$store.dispatch("order/confirm",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
+        this.$router.push("/my_reservation")
       },
     goBack(){
         this.$store.dispatch("order/removePending",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
