@@ -123,7 +123,8 @@ export default {
           rows: this.currentRowsNumber,
           columns: this.currentColumnsNumber,
         });
-        this.ReadHallsAndClearPanel();
+        await this.ReadHallsAndClearPanel();
+        this.DeleteButtonColor = "red";
       }
     },
 
@@ -149,7 +150,7 @@ export default {
     },
 
     async DeleteButtonClick() {
-      if (this.DeleteButtonColor == "green") {
+      if (this.DeleteButtonColor == "green" && this.downloadedHall != null) {
         await this.$store.dispatch(
           "hall/deleteHall",
           this.downloadedHall.hallId

@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pt-4">Edytor pokazów</h2>
+  <h2 class="pt-4">Edytor seansów</h2>
   <div class="hall d-flex justify-space-around">
     <div class="hallList mt-8 justify-center">
       <p>Wybrana sala:</p>
@@ -7,18 +7,18 @@
         v-model="selectedHall"
         style="background-color: white; width: 80%"
       >
+        <option disabled value="">Wybierz salę z listy</option>
         <option v-for="(hall, i) in hallList" :value="hall" :key="i">
           {{ hall.name }}
         </option>
       </select>
       <br />
-      <p>Aktualne pokazy</p>
+      <p>Aktualne pokazy:</p>
       <textarea
         readonly
         v-model="ChosenShowingsText"
         style="width: 100%; height: 200px"
       ></textarea>
-      >
     </div>
     <div class="details mt-8" style="width: 300px">
       <div>
@@ -27,12 +27,13 @@
           v-model="selectedMovie"
           style="background-color: white; width: 300px"
         >
+          <option disabled value="">Wybierz film z listy</option>
           <option v-for="(movie, i) in MovieList" :value="movie" :key="i">
             {{ movie.title }}
           </option>
         </select>
       </div>
-      <p>Termin</p>
+      <p>Termin:</p>
       <div class="d-flex" style="width: 300px">
         <v-text-field
           label="YYYY-MM-DD HH:MM:SS"
@@ -55,9 +56,9 @@ export default {
     return {
       AddButtonColor: "green",
       hallList: [],
-      selectedHall: null,
-      selectedMovie: null,
-      ChosenShowingsText: "a\nb\nc",
+      selectedHall: "",
+      selectedMovie: "",
+      ChosenShowingsText: "",
       ShowingsList: [],
       MovieList: [],
       givenDate: "",
@@ -90,35 +91,42 @@ export default {
 
   methods: {
     async AddButtonClick() {
-      let res = await this.$store.dispatch("showing/addShowing", {
-        date: this.givenDate.replace(" ", "T"),
-        movieId: this.selectedMovie.movieId,
-        hallId: this.selectedHall.hallId,
-      });
+      if (
+        this.selectedMovie &&
+        this.selectedMovie.movieId != null &&
+        this.selectedHall &&
+        this.selectedHall.hallId != null
+      ) {
+        let res = await this.$store.dispatch("showing/addShowing", {
+          date: this.givenDate.replace(" ", "T"),
+          movieId: this.selectedMovie.movieId,
+          hallId: this.selectedHall.hallId,
+        });
 
-      if (res && res.status == 201) {
-        let x = await this.$store.dispatch("showing/getShowings");
-        this.ShowingsList = x.data;
+        if (res && res.status == 201) {
+          let x = await this.$store.dispatch("showing/getShowings");
+          this.ShowingsList = x.data;
 
-        let newChosenShowingsText = "";
-        for (let show of this.ShowingsList) {
-          if (show.hallId == this.selectedHall.hallId) {
-            let showingMovie = null;
-            for (let movie of this.MovieList) {
-              if (show.movieId == movie.movieId) {
-                showingMovie = movie.title;
+          let newChosenShowingsText = "";
+          for (let show of this.ShowingsList) {
+            if (show.hallId == this.selectedHall.hallId) {
+              let showingMovie = null;
+              for (let movie of this.MovieList) {
+                if (show.movieId == movie.movieId) {
+                  showingMovie = movie.title;
+                }
               }
-            }
 
-            newChosenShowingsText =
-              newChosenShowingsText +
-              show.date.replace("T", " ").substring(0, 16) +
-              " " +
-              showingMovie +
-              "\n";
+              newChosenShowingsText =
+                newChosenShowingsText +
+                show.date.replace("T", " ").substring(0, 16) +
+                " " +
+                showingMovie +
+                "\n";
+            }
           }
+          this.ChosenShowingsText = newChosenShowingsText;
         }
-        this.ChosenShowingsText = newChosenShowingsText;
       }
     },
   },

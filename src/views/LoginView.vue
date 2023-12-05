@@ -31,8 +31,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35vh;
-  width: 35vh;
+  height: 300px;
+  width: 260px;
   flex-direction: column;
   gap: 20px;
   position: absolute;
@@ -59,16 +59,15 @@ export default {
     collectData() {
       return {
         email: this.username,
-        password: this.password
+        password: this.password,
       };
     },
   },
   methods: {
     loginMethod() {
-      this.$store
-        .dispatch("user/signIn", this.collectData).then(()=>{
-        this.$router.push({path:"/"})
-      })
+      this.$store.dispatch("user/signIn", this.collectData).then(() => {
+        this.$router.push({ path: "/" });
+      });
     },
   },
 };

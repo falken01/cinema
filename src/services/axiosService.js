@@ -27,13 +27,13 @@ export default {
     return API_CLIENT.get("/Account/logout");
   },
   reserve(seat) {
-    return API_CLIENT.post("/create",seat);
+    return API_CLIENT.post("/create", seat);
   },
   confirm(reservation) {
-    return API_CLIENT.post("/confirm",reservation);
+    return API_CLIENT.post("/confirm", reservation);
   },
   removePending(reservation) {
-    return API_CLIENT.delete("/remove-pending",reservation);
+    return API_CLIENT.delete("/remove-pending", reservation);
   },
   getRole() {
     return API_CLIENT.get("/Account/roles");
