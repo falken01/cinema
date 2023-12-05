@@ -37,7 +37,7 @@ export default {
         this.$store.dispatch("hall/increment",{"row":this.row,"column":this.num});
         this.isFree = !this.isFree;
         this.isReserved = !this.isReserved;
-      } else if(!this.isFree && this.isReserved && !this.isTaken  && this.selected > 0){
+      } else if(!this.isFree && this.isReserved && (!this.isTaken || this.isPending)  && this.selected > 0){
         this.$store.dispatch("hall/decrement",{"row":this.row,"column":this.num});
         this.isFree = !this.isFree;
         this.isReserved = !this.isReserved;
