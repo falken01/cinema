@@ -33,25 +33,29 @@ export const actions = {
     },
     // eslint-disable-next-line no-unused-vars
     confirm({commit},reservations){
+        let results = [];
         for(let reservation of reservations) {
-            return axiosService
+            results.push(axiosService
                 .confirm(reservation)
                 .then((res) => {
                     console.log(res);
                 })
-                .catch((e) => console.log(e));
+                .catch((e) => console.log(e)));
         }
+        return Promise.all(results);
     },
     // eslint-disable-next-line no-unused-vars
     removePending({commit},reservations){
+        let results = [];
         for(let reservation of reservations) {
-            return axiosService
+            results.push(axiosService
                 .removePending(reservation)
                 .then((res) => {
                     console.log(res);
                 })
-                .catch((e) => console.log(e));
+                .catch((e) => console.log(e)));
         }
+        return Promise.all(results);
     }
 };
 

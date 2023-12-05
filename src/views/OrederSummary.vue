@@ -10,6 +10,7 @@
       Bilety ulgowe: {{this.tickets.discounted}} <br />
       Cena:{{this.price}} zł
     </div>
+    <div class="red">{{ this.message }}</div>
     <div class="mt-4 d-flex justify-space-around">
       <v-btn  @click="goBack">Wstecz</v-btn><v-btn @click="accept">Akceptuję</v-btn>
     </div>
@@ -43,8 +44,18 @@
   },
     methods:{
     accept(){
-        this.$store.dispatch("order/confirm",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
-        this.$router.push("/my_reservation")
+        this.$store.dispatch("order/confirm",this.reservations).then((r)=>
+        {
+          if (r.data.reservationId != 0)
+          {
+            this.$router.push("/my_reservation");
+          }
+          else{
+            this.message = "Nie udało się potwierdzić - inny użytkownik ma wyższy priorytet - spróbuj ponownie później (konkurent może zrezygnować)";
+          }
+        }).catch(()=>{
+          this.message = "Nie udało się potwierdzić - inny użytkownik ma wyższy priorytet - spróbuj ponownie później (konkurent może zrezygnować)";
+        })
       },
     goBack(){
         this.$store.dispatch("order/removePending",this.reservations).then((r)=>console.log(r)).catch((e)=>console.log(e))
