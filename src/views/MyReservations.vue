@@ -4,13 +4,13 @@
     <div class="hallList mt-8 justify-center">
       <p>Moje rezerwacje:</p>
       <div>
-        <div v-if="this.ReservationsList.length > 0">
+        <div v-if="this.Lines.length > 0">
           <v-card
             class="mt-8 mb-8 pl-4 pr-4"
             color="indigo"
-            v-for="reservation in this.ReservationsList"
-            :key="reservation.reservationId"
-          >Rezarwacja nr {{reservation.reservationId}} Rząd: {{reservation.row}} Miejsce: {{reservation.column}}
+            v-for="(line, i) in this.Lines"
+            :key="i"
+            >{{ line }}
           </v-card>
         </div>
       </div>
@@ -29,7 +29,7 @@ export default {
   name: "ShowingsView",
   data() {
     return {
-      ReservationsList: [],
+      Lines: [],
       ReservationsText: "",
     };
   },
@@ -51,10 +51,11 @@ export default {
             let movie_id = showing_res.data.movieId;
             let hall_id = showing_res.data.hallId;
 
-            let movie_res = await this.$store.dispatch(
-              "movie/getMovie",
-              movie_id
-            );
+            console.log("///");
+            console.log(movie_id);
+            let movie_res = await this.$store.dispatch("movie/getMovie", {
+              id: movie_id,
+            });
             let hall_res = await this.$store.dispatch("hall/getHall", hall_id);
             console.log("---");
             console.log(hall_res);
@@ -66,19 +67,18 @@ export default {
               hall_res &&
               hall_res.status == 200
             ) {
-              this.ReservationsText =
-                this.ReservationsText +
+              this.Lines.push(
                 "Rezarwacja nr " +
-                reservation.reservationId +
-                " Film: " +
-                movie_res.data.title +
-                " Sala: " +
-                hall_res.data.name +
-                " Rząd: " +
-                reservation.row +
-                " Miejsce: " +
-                reservation.column +
-                "\n\n";
+                  reservation.reservationId +
+                  " Film: " +
+                  movie_res.data.title +
+                  " Sala: " +
+                  hall_res.data.name +
+                  " Rząd: " +
+                  reservation.row +
+                  " Miejsce: " +
+                  reservation.column
+              );
             }
           }
         }
